@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
-import { Table } from "react-bootstrap"
+import { Table, ButtonToolbar, Button, Modal } from "react-bootstrap"
+
 
 export class Grid extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { 
+            modalShow: false 
+        };
+      }
+
     render() {
+
+        let modalClose = () => this.setState({ modalShow: false });
+
         return (
             <div>
                 <h1> This is the Grid </h1>
@@ -22,7 +34,42 @@ export class Grid extends Component {
                         <tr>
                             <td>1</td>
                             <td>Mark</td>
-                            <td>Otto</td>
+                            <td>   
+                                <ButtonToolbar>
+                                    <Button
+                                        variant="primary"
+                                        onClick={() => this.setState({ modalShow: true })}
+                                    >
+                                        Launch vertically centered modal
+                                    </Button>
+
+                                    <Modal 
+                                        size="lg"
+                                        show={this.state.modalShow}
+                                        onHide={modalClose}
+                                    >
+                                        
+                                        <Modal.Header closeButton>
+                                            <Modal.Title id="contained-modal-title-vcenter">
+                                            Modal heading
+                                            </Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <h4>Centered Modal</h4>
+                                            <p>
+                                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                                                dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+                                                ac consectetur ac, vestibulum at eros.
+                                            </p>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                        <Button onClick={() => this.setState({ modalShow: false })}>Close</Button>
+                                        {/* <Button onClick={() => this.setState({ modalShow: false })}>Close</Button> */}
+                                        </Modal.Footer>
+                                        
+                                    </Modal>
+                                </ButtonToolbar>
+                            </td>
                             <td>@mdo</td>
                             <td> test </td>
                             <td> test </td>
@@ -39,14 +86,15 @@ export class Grid extends Component {
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td colSpan="2">Larry the Bird</td>
+                            <td>Larry the Bird</td>
                             <td>@twitter</td>
+                            <td> test </td>
                             <td> test </td>
                             <td> test </td>
                             <td> test </td>
                         </tr>
                     </tbody>
-                    </Table>
+                </Table>
             </div>
         )
     }
