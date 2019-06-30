@@ -12,8 +12,16 @@ export class Grid extends Component {
       }
 
     render() {
-
+        const CSVToJSON = require("csvtojson");
+        const fs = require("fs")
+        
         let modalClose = () => this.setState({ modalShow: false });
+
+        let csvConverter = () => {
+            CSVToJSON().fromFile("/../AAC_PLAYGROUP_FOR_1-17-2019_AT__8_23_17AM.csv").then(source => {
+                console.log(source);
+            })  
+        }
 
         return (
             <div>
@@ -95,6 +103,7 @@ export class Grid extends Component {
                         </tr>
                     </tbody>
                 </Table>
+                <Button onClick={ csvConverter } > Click Me </Button>
             </div>
         )
     }
