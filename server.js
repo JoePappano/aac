@@ -16,6 +16,9 @@ app.set("view engine", "ejs");
 //Routes aka Controller
 require("./controller/apiRoutes")(app);
 
+//Parsing csv file
+// require("./csvConverter")
+
 
 //Starting Server
 app.listen(PORT, function() {

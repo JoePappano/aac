@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Table, ButtonToolbar, Button, Modal } from "react-bootstrap"
+import { Table, ButtonToolbar, Button, Modal } from "react-bootstrap";
+// import Papa from "papaparse";
 
 
 export class Grid extends Component {
@@ -7,20 +8,28 @@ export class Grid extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            modalShow: false 
+            modalShow: false,
         };
       }
+    
+      
+      
+    // componentDidMount() {
+    //   this.loadListing();
+    // }
+    
+    //  loadListing = (e) => {
+    //     CSVToJSON().fromFile("/aacFile.csv").then(source => {
+    //         console.log(source);
+    //     })  
+    //  }
 
     render() {
-        const CSVToJSON = require("csvtojson");
-        const fs = require("fs")
         
         let modalClose = () => this.setState({ modalShow: false });
 
         let csvConverter = () => {
-            CSVToJSON().fromFile("/../AAC_PLAYGROUP_FOR_1-17-2019_AT__8_23_17AM.csv").then(source => {
-                console.log(source);
-            })  
+            csvConverter.csvConverter();
         }
 
         return (
@@ -103,7 +112,11 @@ export class Grid extends Component {
                         </tr>
                     </tbody>
                 </Table>
-                <Button onClick={ csvConverter } > Click Me </Button>
+                {/* <form method="GET" action="/json">
+                    <Button onClick={csvConverter}> Click Me </Button>
+                </form> */}
+                
+                
             </div>
         )
     }
