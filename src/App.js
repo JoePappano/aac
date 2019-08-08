@@ -1,18 +1,30 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Grid from "./components/Grid"
-import Home from "./components/Home"
-import GridTest from "./components/Home"
+import Navbar from "./components/layout/Navbar"
+import Dashboard from "./components/dashboard/Dashboard"
+import ProjectDetails from "./components/projects/ProjectDetails"
+import SignIn from "./components/auth/SignIn"
+import SignUp from "./components/auth/SignUp"
+import CreateProject from "./components/projects/CreateProject"
+import CreateDog from "./components/dogs/CreateDog"
+import ManageDogs from "./components/dashboard/ManageDogs"
+
+
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <div>
+          <Navbar />
           <Switch>
-            <Route path="/" component={Home} exact/>
-            <Route path="/000s" component={Grid}/>
-            <Route path="/grid" component={GridTest}/>
+            <Route path="/" component={Dashboard} exact/>
+            <Route path="/project/:id" component={ProjectDetails} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/create" component={CreateProject} />
+            <Route path="/createDog" component={CreateDog} />
+            <Route path="/manageDogs" component={ManageDogs} />
           </Switch>
         </div>
       </BrowserRouter>
