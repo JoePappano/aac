@@ -16,7 +16,6 @@ class CreateDog extends Component {
         e.preventDefault();
         // console.log(this.state)
         this.props.createDog(this.state)
-        // this.props.createProject(this.state)
     }
     render() {
         return (

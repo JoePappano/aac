@@ -9,9 +9,14 @@ const initState = {
 const dogReducer = (state = initState, action) => {
     switch (action.type) {
         case "CREATE_DOG":
-            console.log("created dog", action.dog)
+            console.log("created dog", action.dog);
+            return state;
+        case "CREATE_DOG_ERROR":
+            console.log("create dog error", action.err);
+            return state;
+        default:
+            return state;
     }
-    return state
 }
 
 export default dogReducer
