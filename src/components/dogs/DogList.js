@@ -1,7 +1,8 @@
 import React from "react"
 import DogSummary from "./DogSummary"
+import { Link } from "react-router-dom"
 
-const DogList = ({dogs}) => {
+const DogList = ({dogs, deleteDog}) => {
     return(
         <div className="project-list section">
             {/* {projects && projects.map(project => {
@@ -11,7 +12,9 @@ const DogList = ({dogs}) => {
             })} */}
             { dogs && dogs.map(dog => {
                 return (
-                    <DogSummary dog={dog} key={dog.id} />
+                    <Link>
+                        <DogSummary deleteDog={deleteDog} dog={dog} key={dog.id} />
+                    </Link>
                 )
             })}
         </div>

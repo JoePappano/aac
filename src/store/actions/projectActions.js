@@ -15,3 +15,10 @@ export const createProject = (project) => {
         })
     }
 };
+
+// export const deleteProject = (project) => {
+//     return (dispatch, getState, { getFirebase, getFirestore}) => {
+//         const firestore = getFirestore();
+//         firestore.collection('projects').delete({})
+//     }
+// }

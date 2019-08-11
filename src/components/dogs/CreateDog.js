@@ -5,7 +5,7 @@ import { createDog } from "../../store/actions/dogActions"
 class CreateDog extends Component {
     state = {
         name:"",
-        content:"",
+        info:"",
     }
     handleChange = (e) => {
         this.setState({
@@ -28,7 +28,7 @@ class CreateDog extends Component {
                     </div>
                     <div className="input-field">
                         <label htmlFor="content"> Dog Info </label>
-                        <textarea className="materialize-textarea" type="text" id="content" onChange={this.handleChange} />
+                        <textarea className="materialize-textarea" type="text" id="info" onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Submit</button>

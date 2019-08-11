@@ -7,6 +7,23 @@ export const createDog = (dog) => {
             authorFirstName: "Joe",
             authorLastName: "P",
             authorId: 12345,
+            BR: false,
+            DR: false,
+            EA: false,
+            ER: false,
+            GS: false,
+            H: false,
+            HT: false,
+            J: false,
+            LB: false,
+            LLW: false,
+            LWO: false,
+            M: false,
+            RR: false,
+            SP: false,
+            TM: false,
+            walked: false,
+            playgroup: false,
             createdAt: new Date()
         }).then(() => {
             dispatch({ type: "CREATE_DOG", dog});
@@ -15,3 +32,15 @@ export const createDog = (dog) => {
         })
     }
 };
+
+export const deleteDog = (id) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firestore = getFirestore();
+        firestore.collection("dogs").doc(id).delete()
+            .then(() => {
+                dispatch({ type: "DELETE_DOG" , id});
+            }).catch((err) => {
+                dispatch({ type: "DELETE_DOG_ERROR", err})
+            })
+    }
+}

@@ -3,17 +3,25 @@ import DogList from "../dogs/DogList"
 import { connect } from "react-redux"
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { deleteDog } from "../../store/actions/dogActions"
 
-class Dashboard extends Component {
+
+class ManageDogs extends Component {
+
+    deleteDog = (id) => {
+        console.log(id)
+        this.props.deleteDog(id)
+    }
+
+
     render(){
-        console.log(this.props)
         const { dogs } = this.props
         // const { projects } = this.props
         return(
             <div className="dashboard-container">
                 <div className=""> 
                 <h1> Manage Dogs</h1>
-                    <DogList dogs={dogs}/>
+                    <DogList deleteDog={this.deleteDog} dogs={dogs}/>
                 </div>
             </div>
         )
@@ -34,9 +42,15 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteDog: (id) => dispatch(deleteDog(id))
+    }
+}
+
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
         { collection: "dogs" },
     ])
-)(Dashboard)
+)(ManageDogs)

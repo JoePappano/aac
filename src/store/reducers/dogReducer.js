@@ -14,6 +14,12 @@ const dogReducer = (state = initState, action) => {
         case "CREATE_DOG_ERROR":
             console.log("create dog error", action.err);
             return state;
+        case "DELETE_DOG":
+            console.log("deleted dog", action.dog, action.id);
+            return state;
+        case "DELETE_DOG_ERROR":
+            console.log("delete dog error", action.err);
+            return state;
         default:
             return state;
     }
