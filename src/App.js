@@ -8,6 +8,8 @@ import SignUp from "./components/auth/SignUp"
 import CreateProject from "./components/projects/CreateProject"
 import CreateDog from "./components/dogs/CreateDog"
 import ManageDogs from "./components/dashboard/ManageDogs"
+import DogDetails from "./components/dogs/DogDetails"
+import DogDetails2 from "./components/dogs/DogDetails2"
 
 
 
@@ -20,6 +22,7 @@ function App() {
           <Switch>
             <Route path="/" component={Dashboard} exact/>
             <Route path="/project/:id" component={ProjectDetails} />
+            <Route path="/dog/:id" component={DogDetails} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/create" component={CreateProject} />

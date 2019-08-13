@@ -1,19 +1,57 @@
 import React from 'react'
+import { connect } from "react-redux"
+import { firestoreConnect } from "react-redux-firebase"
+import { compose } from "redux"
+import { deleteDog } from "../../store/actions/dogActions"
 
 const DogDetails = (props) => {
-    console.log(props)
-    const id = props.match.params.id
-    return (
-        <div className="container section">
-            <div className="card z-depth-0">
-                <div className="card-content">
-                    <span className="card-title"> Dog Name - {id}</span>
-                    {/* <img alt="dogpic"> </img> */}
-                    <p> Elit labore ullamco in deserunt dolore elit veniam adipisicing amet et labore laborum pariatur duis. Labore non Lorem consequat reprehenderit et irure Lorem ex consequat ipsum incididunt anim tempor excepteur. Nostrud incididunt exercitation cillum commodo occaecat nisi occaecat adipisicing enim culpa elit velit. Deserunt nulla magna commodo laboris proident velit sunt nisi dolore officia ut enim sit adipisicing. </p>
-                </div>
-            </div>  
-        </div>
-    )
+
+    
+    const { dog } = props;
+    // console.log(props)
+
+    if (dog) {
+        return (
+            <div className="container section">
+                <div className="card z-depth-0">
+                    <div className="card-content">
+                        <span className="card-title"> {dog.name} </span>
+                        {/* <img alt="dogpic"> </img> */}
+                        <p> {dog.info} </p>
+                        {/* <p> {id} </p> */}
+                        {/* <button onClick={() => {deleteDog(dog.id)}}> Delete </button> */}
+                    </div>
+                </div>  
+            </div>
+        )
+    } else {
+        return (
+            <div className="container center">
+                <p> Loading dog... </p>
+            </div>
+        )
+    }
+    
 }
 
-export default DogDetails
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.match.params.id;
+    const dogs = state.firestore.data.dogs;
+    const dog = dogs ? dogs[id] : null;
+    return{
+        dog: dog
+    }
+}
+
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         deleteDog: (id) => dispatch(deleteDog(id))
+//     }
+// }
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {collection: "dogs"}
+    ])
+)(DogDetails)

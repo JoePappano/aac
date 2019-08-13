@@ -1,6 +1,6 @@
 import React from "react"
 import DogSummary from "./DogSummary"
-import { Link } from "react-router-dom"
+
 
 const DogList = ({dogs, deleteDog}) => {
     return(
@@ -12,9 +12,9 @@ const DogList = ({dogs, deleteDog}) => {
             })} */}
             { dogs && dogs.map(dog => {
                 return (
-                    <Link>
-                        <DogSummary deleteDog={deleteDog} dog={dog} key={dog.id} />
-                    </Link>
+                    
+                    <DogSummary deleteDog={deleteDog} dog={dog} key={dog.id} />
+                    
                 )
             })}
         </div>

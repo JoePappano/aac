@@ -4,18 +4,23 @@ import { connect } from "react-redux"
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { deleteDog } from "../../store/actions/dogActions"
+import { Redirect } from "react-router-dom"
 
 
 class ManageDogs extends Component {
 
     deleteDog = (id) => {
-        console.log(id)
+        // console.log(id)
         this.props.deleteDog(id)
     }
 
+    updateDog = (id) => {
+
+    }
 
     render(){
-        const { dogs } = this.props
+        const { dogs, auth } = this.props;
+        if (!auth.uid) return <Redirect to="/signin"></Redirect>
         // const { projects } = this.props
         return(
             <div className="dashboard-container">
@@ -36,9 +41,10 @@ class ManageDogs extends Component {
 // }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+    // console.log(state)
     return {
-        dogs: state.firestore.ordered.dogs
+        dogs: state.firestore.ordered.dogs,
+        auth: state.firebase.auth
     }
 }
 

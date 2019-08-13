@@ -5,7 +5,7 @@ import { createDog } from "../../store/actions/dogActions"
 class CreateDog extends Component {
     state = {
         name:"",
-        info:"",
+        kennelNum: "",
     }
     handleChange = (e) => {
         this.setState({
@@ -15,7 +15,8 @@ class CreateDog extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.state)
-        this.props.createDog(this.state)
+        this.props.createDog(this.state);
+        this.props.history.push("/manageDogs")
     }
     render() {
         return (
@@ -27,8 +28,8 @@ class CreateDog extends Component {
                         <input type="text" id="name" onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content"> Dog Info </label>
-                        <textarea className="materialize-textarea" type="text" id="info" onChange={this.handleChange} />
+                        <label htmlFor="content"> Kennel Number </label>
+                        <textarea className="materialize-textarea" type="text" id="kennelNum" onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Submit</button>
