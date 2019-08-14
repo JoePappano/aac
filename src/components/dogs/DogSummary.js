@@ -10,12 +10,7 @@ import { compose } from 'redux'
 class DogSummary extends Component {
 
     state = {
-        
-    }
-
-    componentWillMount = () => {
-        this.setState({
-            BR: this.props.dog.BR,
+        BR: this.props.dog.BR,
             DR: this.props.dog.DR,
             EA: this.props.dog.EA,
             ER: this.props.dog.ER,
@@ -32,21 +27,153 @@ class DogSummary extends Component {
             TM: this.props.dog.TM,
             playgroup: this.props.dog.playgroup,
             walked: this.props.dog.walked,
-            })
+            kennelNum: this.props.dog.kennelNum,
+            name: this.props.dog.name
     }
 
-    toggleTrait = (e) => {
-        console.log("e.target =", e.target)
-    }
+    // componentWillMount = () => {
+    //     this.setState({
+            
+    //         })
+    // }
 
-    toggleTrait = (e) => {
+    // toggleTrait = (e) => {
+    //     console.log("e.target =", e.target)
+    // }
+
+    toggleTraitBR = (e) => {
         e.preventDefault();
-        this.setState({
-            [e.target.id]: !e.target.value
-        })
-        // console.log("state", !e.target.value)
+        this.setState(prevState => ({
+            BR: !prevState.BR
+        }))
         console.log(this.state)
     }
+    
+    toggleTraitDR = (e) => {
+        e.preventDefault();
+        const valueDR = this.state.DR;
+        this.setState({
+            DR: !valueDR
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitEA = (e) => {
+        e.preventDefault();
+        this.setState(prevState => ({
+            EA: !prevState.EA
+        }))
+        console.log(this.state)
+    }
+
+    toggleTraitER = (e) => {
+        e.preventDefault();
+        const valueER = this.state.ER;
+        this.setState({
+            ER: !valueER
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitGS = (e) => {
+        e.preventDefault();
+        const valueGS = this.state.GS;
+        this.setState({
+            GS: !valueGS 
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitH = (e) => {
+        e.preventDefault();
+        const valueH = this.state.H;
+        this.setState({
+            H: !valueH 
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitHT = (e) => {
+        e.preventDefault();
+        const valueHT = this.state.HT;
+        this.setState({
+            HT: !valueHT
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitJ = (e) => {
+        e.preventDefault();
+        const valueJ = this.state.J;
+        this.setState({
+            J: !valueJ 
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitLB = (e) => {
+        e.preventDefault();
+        const valueLB = this.state.LB;
+        this.setState({
+            LB: !valueLB 
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitLLW = (e) => {
+        e.preventDefault();
+        const valueLLW = this.state.LLW;
+        this.setState({
+            LLW: !valueLLW 
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitLWO = (e) => {
+        e.preventDefault();
+        const valueLWO = this.state.LWO;
+        this.setState({
+            LWO: !valueLWO 
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitM = (e) => {
+        e.preventDefault();
+        const valueM = this.state.M;
+        this.setState({
+            M: !valueM 
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitRR = (e) => {
+        e.preventDefault();
+        const valueRR = this.state.RR;
+        this.setState({
+            RR: !valueRR 
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitSP = (e) => {
+        e.preventDefault();
+        const valueSP = this.state.SP;
+        this.setState({
+            SP: !valueSP 
+        })
+        console.log(this.state)
+    }
+
+    toggleTraitTM = (e) => {
+        e.preventDefault();
+        const valueTM = this.state.TM;
+        this.setState({
+            TM: !valueTM 
+        })
+        console.log(this.state)
+    }
+    
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.props)
@@ -59,11 +186,9 @@ class DogSummary extends Component {
 
 
         const {dog, deleteDog} = this.props;
-        // console.log(dog)
         const trigger = <Button>See Dog Traits</Button>
-        // const booleanBR = dog.BR ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>;
-        const booleanPlaygroup = dog.playgroup ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>;
-        const booleanWalked = dog.walked ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>
+        
+        // console.log(this.props)
 
         
 
@@ -110,91 +235,91 @@ class DogSummary extends Component {
                                 <div className="row">
                                     <p className="col s8"> Barrier Reactive: {dog.BR === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s4">
-                                        <button id="BR" onClick={this.toggleTrait} value={this.state.BR}> Click to Toggle Yes/No</button>
+                                        <button id="BR" onClick={this.toggleTraitBR}> Click to Toggle Yes/No</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Dog Reactive: {dog.DR === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="DR" onClick={this.toggleTrait} > Click to Change True/False</button>
+                                        <button id="DR" onClick={this.toggleTraitDR} > Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Escape Artist: {dog.EA === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="EA" onClick={this.toggleTrait} value={dog.EA}> Click to Change True/False</button>
+                                        <button id="EA" onClick={this.toggleTraitEA} > Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Easily Redirected: {dog.ER === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="ER" onClick={this.toggleTrait} value={dog.ER}> Click to Change True/False</button>
+                                        <button id="ER" onClick={this.toggleTraitER}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Go Slow: {dog.GS === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="GS" onClick={this.toggleTrait} value={dog.GS}> Click to Change True/False</button>
+                                        <button id="GS" onClick={this.toggleTraitGS}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Humps: {dog.H === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="H" onClick={this.toggleTrait} value={dog.H}> Click to Change True/False</button>
+                                        <button id="H" onClick={this.toggleTraitH}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Seems House Trained: {dog.HT === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="HT" onClick={this.toggleTrait} value={dog.HT}> Click to Change True/False</button>
+                                        <button id="HT" onClick={this.toggleTraitHT}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Jumpy: {dog.J === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="J" onClick={this.toggleTrait} value={dog.J}> Click to Change True/False</button>
+                                        <button id="J" onClick={this.toggleTraitJ}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Leash Biter: {dog.LB === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="LB" onClick={this.toggleTrait} value={dog.LB}> Click to Change True/False</button>
+                                        <button id="LB" onClick={this.toggleTraitLB}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Loose Leash Walker: {dog.LLW === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="LLW" onClick={this.toggleTrait} value={dog.LLW}> Click to Change True/False</button>
+                                        <button id="LLW" onClick={this.toggleTraitLLW}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Leash Walk Only: {dog.LWO === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="LWO" onClick={this.toggleTrait} value={dog.LWO}> Click to Change True/False</button>
+                                        <button id="LWO" onClick={this.toggleTraitLWO}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Mouthy: {dog.M === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="M" onClick={this.toggleTrait} value={dog.M}> Click to Change True/False</button>
+                                        <button id="M" onClick={this.toggleTraitM}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Resistance for Re-Kenneling: {dog.RR === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="RR" onClick={this.toggleTrait} value={dog.RR}> Click to Change True/False</button>
+                                        <button id="RR" onClick={this.toggleTraitRR}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Strong Puller: {dog.SP === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="SP" onClick={this.toggleTrait} value={dog.SP}> Click to Change True/False</button>
+                                        <button id="SP" onClick={this.toggleTraitSP}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <p className="col s6"> Treat Motivated: {dog.TM === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="TM" onClick={this.toggleTrait} value={dog.TM}> Click to Change True/False</button>
+                                        <button id="TM" onClick={this.toggleTraitTM}> Click to Change True/False</button>
                                     </div>
                                 </div>
                                 <div className="input-field">
