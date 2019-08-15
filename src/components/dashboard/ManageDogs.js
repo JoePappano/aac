@@ -14,9 +14,9 @@ class ManageDogs extends Component {
         this.props.deleteDog(id)
     }
 
-    updateDog = (id) => {
-
-    }
+    // updateDog = (id, data) => {
+    //     this.props.updateDog(id, data)
+    // }
 
     render(){
         const { dogs, auth } = this.props;
@@ -50,7 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteDog: (id) => dispatch(deleteDog(id))
+        deleteDog: (id) => dispatch(deleteDog(id)),
     }
 }
 

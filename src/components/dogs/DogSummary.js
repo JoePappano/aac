@@ -3,6 +3,8 @@ import { Modal, Button } from "react-materialize";
 import { connect } from "react-redux"
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { updateDog } from "../../store/actions/dogActions"
+
 
 // import { deleteDog } from "../../store/actions/dogActions"
 // import projectReducer from "../../store/reducers/projectReducer";
@@ -11,35 +13,55 @@ class DogSummary extends Component {
 
     state = {
         BR: this.props.dog.BR,
-            DR: this.props.dog.DR,
-            EA: this.props.dog.EA,
-            ER: this.props.dog.ER,
-            GS: this.props.dog.GS,
-            H: this.props.dog.H,
-            HT: this.props.dog.HT,
-            J: this.props.dog.J,
-            LB: this.props.dog.LB,
-            LLW: this.props.dog.LLW,
-            LWO: this.props.dog.LWO,
-            M: this.props.dog.M,
-            RR: this.props.dog.RR,
-            SP: this.props.dog.SP,
-            TM: this.props.dog.TM,
-            playgroup: this.props.dog.playgroup,
-            walked: this.props.dog.walked,
-            kennelNum: this.props.dog.kennelNum,
-            name: this.props.dog.name
+        DR: this.props.dog.DR,
+        EA: this.props.dog.EA,
+        ER: this.props.dog.ER,
+        GS: this.props.dog.GS,
+        H: this.props.dog.H,
+        HT: this.props.dog.HT,
+        J: this.props.dog.J,
+        LB: this.props.dog.LB,
+        LLW: this.props.dog.LLW,
+        LWO: this.props.dog.LWO,
+        M: this.props.dog.M,
+        RR: this.props.dog.RR,
+        SP: this.props.dog.SP,
+        TM: this.props.dog.TM,
+        playgroup: this.props.dog.playgroup,
+        walked: this.props.dog.walked,
+        kennelNum: this.props.dog.kennelNum,
+        name: this.props.dog.name,
+        authorId: this.props.dog.authorId,
+        authorFirstName: this.props.dog.authorFirstName,
+        authorLastName: this.props.dog.authorLastName,
+        id: this.props.dog.id
     }
 
     // componentWillMount = () => {
     //     this.setState({
-            
+       
     //         })
     // }
 
     // toggleTrait = (e) => {
     //     console.log("e.target =", e.target)
     // }
+
+    toggleTraitPlaygroup = (e) => {
+        e.preventDefault();
+        this.setState(prevState => ({
+            playgroup: !prevState.playgroup
+        }))
+        console.log(this.state)
+    }
+
+    toggleTraitWalked = (e) => {
+        e.preventDefault();
+        this.setState(prevState => ({
+            walked: !prevState.walked
+        }))
+        console.log(this.state)
+    }
 
     toggleTraitBR = (e) => {
         e.preventDefault();
@@ -178,8 +200,13 @@ class DogSummary extends Component {
         e.preventDefault();
         // console.log(this.props)
         // console.log(this.state)
-        // this.props.createDog(this.state);
+        this.props.updateDog(this.props.dog.id, this.state);
         // this.props.history.push("/manageDogs")
+    }
+
+    consoleState = (e) => {
+        e.preventDefault();
+        console.log(this.state)
     }
     
     render() {
@@ -205,12 +232,14 @@ class DogSummary extends Component {
                             <span> {dog.id} </span>
                         </div>
                         <div className="col s4">
-                            <p> Walked Today: {dog.walked === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
-                            <button> Log a Walk </button>
+                            <p> Walked Today: {dog.walked === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p><br />
+                            <button className="btn blue" onClick={this.toggleTraitWalked}> Log a Walk </button> <br /> <br />
+                            <button className="btn pink lighten-1 z-depth-0" onClick={this.handleSubmit}>Save Change</button>
                         </div>
                         <div className="col s4">
-                            <p> Attended Playground Today: {dog.playgroup === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
-                            <button> Log a Playgroup</button>
+                            <p> Attended Playground Today: {dog.playgroup === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p><br />
+                            <button className="btn blue" onClick={this.toggleTraitPlaygroup}> Log a Playgroup</button> <br /><br />
+                            <button className="btn pink lighten-1 z-depth-0" onClick={this.handleSubmit}>Save Change</button>
                         </div>
                     </div>
                     <button onClick={() => {deleteDog(dog.id)}}> Delete </button>
@@ -231,100 +260,128 @@ class DogSummary extends Component {
                                     <button > Update Kennel Number </button>
                                 </div>
                             </form>
+                            <hr />
                             <form>
                                 <div className="row">
-                                    <p className="col s8"> Barrier Reactive: {dog.BR === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
-                                    <div className="input-field col s4">
-                                        <button id="BR" onClick={this.toggleTraitBR}> Click to Toggle Yes/No</button>
+                                    <p className="col s6"> Barrier Reactive: {dog.BR === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
+                                    <div className="col s6">
+                                        <button className="btn blue" id="BR" onClick={this.toggleTraitBR}>Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Dog Reactive: {dog.DR === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="DR" onClick={this.toggleTraitDR} > Click to Change True/False</button>
+                                        <button className="btn blue" id="DR" onClick={this.toggleTraitDR} >Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Escape Artist: {dog.EA === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="EA" onClick={this.toggleTraitEA} > Click to Change True/False</button>
+                                        <button className="btn blue" id="EA" onClick={this.toggleTraitEA} > Change Yes/No </button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Easily Redirected: {dog.ER === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="ER" onClick={this.toggleTraitER}> Click to Change True/False</button>
+                                        <button className="btn blue" id="ER" onClick={this.toggleTraitER}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Go Slow: {dog.GS === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="GS" onClick={this.toggleTraitGS}> Click to Change True/False</button>
+                                        <button className="btn blue" id="GS" onClick={this.toggleTraitGS}> Change Yes/No </button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Humps: {dog.H === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="H" onClick={this.toggleTraitH}> Click to Change True/False</button>
+                                        <button className="btn blue" id="H" onClick={this.toggleTraitH}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Seems House Trained: {dog.HT === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="HT" onClick={this.toggleTraitHT}> Click to Change True/False</button>
+                                        <button className="btn blue" id="HT" onClick={this.toggleTraitHT}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Jumpy: {dog.J === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="J" onClick={this.toggleTraitJ}> Click to Change True/False</button>
+                                        <button className="btn blue" id="J" onClick={this.toggleTraitJ}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Leash Biter: {dog.LB === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="LB" onClick={this.toggleTraitLB}> Click to Change True/False</button>
+                                        <button className="btn blue" id="LB" onClick={this.toggleTraitLB}>Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Loose Leash Walker: {dog.LLW === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="LLW" onClick={this.toggleTraitLLW}> Click to Change True/False</button>
+                                        <button className="btn blue" id="LLW" onClick={this.toggleTraitLLW}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Leash Walk Only: {dog.LWO === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="LWO" onClick={this.toggleTraitLWO}> Click to Change True/False</button>
+                                        <button className="btn blue" id="LWO" onClick={this.toggleTraitLWO}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Mouthy: {dog.M === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="M" onClick={this.toggleTraitM}> Click to Change True/False</button>
+                                        <button className="btn blue" id="M" onClick={this.toggleTraitM}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Resistance for Re-Kenneling: {dog.RR === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="RR" onClick={this.toggleTraitRR}> Click to Change True/False</button>
+                                        <button className="btn blue" id="RR" onClick={this.toggleTraitRR}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Strong Puller: {dog.SP === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="SP" onClick={this.toggleTraitSP}> Click to Change True/False</button>
+                                        <button className="btn blue" id="SP" onClick={this.toggleTraitSP}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
+                                <hr />
                                 <div className="row">
                                     <p className="col s6"> Treat Motivated: {dog.TM === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p>
                                     <div className="input-field col s6">
-                                        <button id="TM" onClick={this.toggleTraitTM}> Click to Change True/False</button>
+                                        <button className="btn blue" id="TM" onClick={this.toggleTraitTM}> Change Yes/No</button>
+                                        <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
-                                <div className="input-field">
-                                    <button className="btn pink lighten-1 z-depth-0">Submit</button>
-                                </div>
+                                
                             </form>
                     </Modal>
                 </div> 
@@ -346,7 +403,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // deleteDog: (id) => dispatch(deleteDog(id))
+        updateDog: (id, data) => dispatch(updateDog(id, data))
     }
 }
 

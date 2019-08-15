@@ -46,3 +46,16 @@ export const deleteDog = (id) => {
             })
     }
 }
+
+export const updateDog = (id, data) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection("dogs").doc(id).update({
+            ...data
+        }).then(() => {
+            dispatch({ type: "UPDATE_DOG", data})
+        }).catch((err) => {
+            dispatch({ type: "UPDATE_DOG_ERROR", err})
+        })
+    }
+}

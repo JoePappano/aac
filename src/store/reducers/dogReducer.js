@@ -1,8 +1,6 @@
 const initState = {
     dogs: [
-        {id: '1', name: 'help me find peach', info: 'blah blah blah'},
-        {id: '2', name: 'collect all the stars', info: 'blah blah blah'},
-        {id: '3', name: 'egg hunt with yoshi', info: 'blah blah blah'}
+        
       ]
 }
 
@@ -19,6 +17,12 @@ const dogReducer = (state = initState, action) => {
             return state;
         case "DELETE_DOG_ERROR":
             console.log("delete dog error", action.err);
+            return state;
+        case "UPDATE_DOG":
+            console.log("updated dog", action.data, action.id);
+            return state;
+        case "UPDATE_DOG_ERROR":
+            console.log("update dog error", action.err);
             return state;
         default:
             return state;
