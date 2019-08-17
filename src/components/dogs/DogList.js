@@ -5,16 +5,9 @@ import DogSummary from "./DogSummary"
 const DogList = ({dogs, deleteDog}) => {
     return(
         <div className="project-list section">
-            {/* {projects && projects.map(project => {
-                return (
-                    <DogSummary project={project} key={project.id}/>
-                )
-            })} */}
             { dogs && dogs.map(dog => {
                 return (
-                    
                     <DogSummary deleteDog={deleteDog} dog={dog} key={dog.id} />
-                    
                 )
             })}
         </div>

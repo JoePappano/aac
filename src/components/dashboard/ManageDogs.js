@@ -5,13 +5,38 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { deleteDog } from "../../store/actions/dogActions"
 import { Redirect } from "react-router-dom"
+import { Checkbox } from "react-materialize"
 
 
 class ManageDogs extends Component {
 
+    state = {
+        checked: false,
+    }
+
+
+
     deleteDog = (id) => {
         // console.log(id)
-        this.props.deleteDog(id)
+        if(window.confirm("Are you sure you want to delete this dog?")) {
+            this.props.deleteDog(id)
+        } 
+    }
+
+    searchDogName = () =>   {
+
+    }
+
+    searchKennelNum = () => {
+
+    }
+
+    searchWalked = () => {
+
+    }
+    
+    searchPlaygroup = () => {
+        
     }
 
     // updateDog = (id, data) => {
@@ -25,7 +50,23 @@ class ManageDogs extends Component {
         return(
             <div className="dashboard-container">
                 <div className=""> 
-                <h1> Manage Dogs</h1>
+                <h1> Dog Manager </h1>
+                <form className="white" onSubmit={this.handleSubmit}>
+                    <h5 className="grey-text text-darken-3">Search For a Dog</h5>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <label htmlFor="name"> Dog Name </label>
+                                <input type="text" id="name" onChange={this.handleChange} />
+                            </div>
+                            <div className="input-field col s6">
+                                <label htmlFor="content"> Kennel Number </label>
+                                <textarea className="materialize-textarea" type="text" id="kennelNum" onChange={this.handleChange} />
+                            </div>
+                            <div className="input-field">
+                                <button className="btn pink lighten-1 z-depth-0">Submit</button>
+                            </div>
+                        </div>
+                </form>
                     <DogList deleteDog={this.deleteDog} dogs={dogs}/>
                 </div>
             </div>

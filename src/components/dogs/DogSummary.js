@@ -214,6 +214,7 @@ class DogSummary extends Component {
 
         const {dog, deleteDog} = this.props;
         const trigger = <Button>See Dog Traits</Button>
+        const trigger2 = <Button> Delete </Button>
         
         // console.log(this.props)
 
@@ -225,11 +226,11 @@ class DogSummary extends Component {
                 <div className="card-content grey-text text-darken-3">
                     <div className="row">
                         <div className="col s4">
-                            <span className="card-title"> {dog.name} </span>
+                            <h2> {dog.name} </h2>
+                            <h1 className="card-title"> Kennel: {dog.kennelNum} </h1>
                             {/* <img alt="dogpic"></img> */}
-                            <span> {dog.kennelNum}</span>
                             <span> {dog.info} </span>
-                            <span> {dog.id} </span>
+                            {/* <span> {dog.id} </span> */}
                         </div>
                         <div className="col s4">
                             <p> Walked Today: {dog.walked === true ? <span className="green-text"> Yes </span> : <span className="red-text"> No </span>} </p><br />
@@ -242,7 +243,8 @@ class DogSummary extends Component {
                             <button className="btn pink lighten-1 z-depth-0" onClick={this.handleSubmit}>Save Change</button>
                         </div>
                     </div>
-                    <button onClick={() => {deleteDog(dog.id)}}> Delete </button>
+                    
+                    <button className="btn red" onClick={() => {deleteDog(dog.id)}}> Delete Dog </button> 
 
                     <Modal header="Modal Header" trigger={trigger}>
                             <h3 className="grey-text text-darken-3 center"> {dog.name} </h3>
@@ -381,7 +383,7 @@ class DogSummary extends Component {
                                         <button className="btn pink lighten-1 z-depth-0 buttonMargin" onClick={this.handleSubmit}>Save Change</button>
                                     </div>
                                 </div>
-                                
+                            
                             </form>
                     </Modal>
                 </div> 
