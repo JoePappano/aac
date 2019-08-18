@@ -395,13 +395,13 @@ class DogSummary extends Component {
 }
 
 
-const mapStateToProps = (state) => {
-    // console.log("state",state)
-    return {
-        dogs: state.firestore.ordered.dogs,
-        auth: state.firebase.auth
-    }
-}
+// const mapStateToProps = (state) => {
+//     // console.log("state",state)
+//     return {
+//         // dogs: state.firestore.ordered.dogs,
+//         auth: state.firebase.auth
+//     }
+// }
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -410,7 +410,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(null, mapDispatchToProps),
     firestoreConnect([
         { collection: "dogs" },
     ])

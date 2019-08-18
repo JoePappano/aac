@@ -59,3 +59,16 @@ export const updateDog = (id, data) => {
         })
     }
 }
+
+export const queryDogs = () => {
+    return (dispatch, getState, { getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        const dogs = [];
+        firestore.collection("dogs").where("name", "==", "Fido").get().then((snapshot) => {
+            snapshot.docs.forEach(dog => {
+                // console.log(dog.data())
+                dispatch({ type: "QUERY_DOG", dog})
+            })
+        })
+    }
+}

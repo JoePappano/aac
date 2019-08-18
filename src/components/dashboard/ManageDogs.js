@@ -4,17 +4,20 @@ import { connect } from "react-redux"
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { deleteDog } from "../../store/actions/dogActions"
+import { queryDogs } from "../../store/actions/dogActions"
 import { Redirect } from "react-router-dom"
 import { Checkbox } from "react-materialize"
+// import fbConfig from "../../config/fbConfig"
 
 
 class ManageDogs extends Component {
 
     state = {
-        checked: false,
+        name: null,
+        kennelNum: null,
+        needsWalk: null,
+        needsPlaygroup: null
     }
-
-
 
     deleteDog = (id) => {
         // console.log(id)
@@ -23,68 +26,76 @@ class ManageDogs extends Component {
         } 
     }
 
-    searchDogName = () =>   {
-
+    queryDogs = (e) => {
+        e.preventDefault();
+        this.props.queryDogs()
     }
 
-    searchKennelNum = () => {
-
+    checkState = (e) => {
+        e.preventDefault();
+        console.log(this.props.initDogs)
     }
-
-    searchWalked = () => {
-
-    }
-    
-    searchPlaygroup = () => {
-        
-    }
-
     // updateDog = (id, data) => {
     //     this.props.updateDog(id, data)
     // }
 
     render(){
-        const { dogs, auth } = this.props;
+        const { dogs, auth, initDogs } = this.props;
         if (!auth.uid) return <Redirect to="/signin"></Redirect>
         // const { projects } = this.props
+        // console.log(initDogs)
+        // console.log(this.props)
         return(
             <div className="dashboard-container">
-                <div className=""> 
-                <h1> Dog Manager </h1>
-                <form className="white" onSubmit={this.handleSubmit}>
-                    <h5 className="grey-text text-darken-3">Search For a Dog</h5>
-                        <div className="row">
-                            <div className="input-field col s6">
+                <div className="row white">
+                    <form className="white col s4" onSubmit={this.handleSubmit}>
+                            <div className="input-field">
                                 <label htmlFor="name"> Dog Name </label>
                                 <input type="text" id="name" onChange={this.handleChange} />
                             </div>
-                            <div className="input-field col s6">
+                            <div className="input-field">
+                                <button className="btn pink lighten-1 z-depth-0" onClick={this.queryDogs}>Submit</button>
+                            </div>
+                    </form>
+                    <form className="white col s4" onSubmit={this.handleSubmit}>
+                            <div className="input-field">
                                 <label htmlFor="content"> Kennel Number </label>
-                                <textarea className="materialize-textarea" type="text" id="kennelNum" onChange={this.handleChange} />
+                                <input type="text" id="kennelNum" onChange={this.handleChange} />
                             </div>
                             <div className="input-field">
+                                <button className="btn pink lighten-1 z-depth-0" onClick={this.checkState}>Submit</button>
+                            </div>
+                    </form>
+                    <div className="col s4">
+                        <form className="white" onSubmit={this.handleSubmit}>
+                                <Checkbox value="Red" label="Walk Not Logged"/>
+                            <div className="input-field col">
                                 <button className="btn pink lighten-1 z-depth-0">Submit</button>
                             </div>
-                        </div>
-                </form>
-                    <DogList deleteDog={this.deleteDog} dogs={dogs}/>
+                        </form>
+                        <form className="white" onSubmit={this.handleSubmit}>
+                                <Checkbox value="Red" label="Playgroup Not Logged"/>
+                            <div className="input-field col">
+                                <button className="btn pink lighten-1 z-depth-0">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div className=""> 
+                    <DogList deleteDog={this.deleteDog} dogs={initDogs}/>
                 </div>
             </div>
         )
     }
 }
 
-// const mapStateToProps = (state) => {
-//     console.log(state)
-//     return {
-//         projects: state.firestore.ordered.projects
-//     }
-// }
 
 const mapStateToProps = (state) => {
-    // console.log(state)
+    console.log(state)
     return {
         dogs: state.firestore.ordered.dogs,
+        initDogs: state.dog,
         auth: state.firebase.auth
     }
 }
@@ -92,6 +103,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteDog: (id) => dispatch(deleteDog(id)),
+        queryDogs: () => dispatch(queryDogs())
     }
 }
 

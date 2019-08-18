@@ -1,13 +1,15 @@
-const initState = {
-    dogs: [
-        
-      ]
-}
+const initState = [
+      {id: '1', title: 'help me find peach', content: 'blah blah blah'},
+      {id: '2', title: 'collect all the stars', content: 'blah blah blah'},
+      {id: '3', title: 'egg hunt with yoshi', content: 'blah blah blah'}
+    ]
+
+
 
 const dogReducer = (state = initState, action) => {
     switch (action.type) {
         case "CREATE_DOG":
-            console.log("created dog", action.dog);
+            console.log("created dog", action.dog, state);
             return state;
         case "CREATE_DOG_ERROR":
             console.log("create dog error", action.err);
@@ -24,9 +26,19 @@ const dogReducer = (state = initState, action) => {
         case "UPDATE_DOG_ERROR":
             console.log("update dog error", action.err);
             return state;
+        case "QUERY_DOG":
+            console.log("queried dogs", action.dog.data());
+            initState.push(action.dog.data())
+            // console.log(state)
+            return state;
+        case "QUERY_DOG_ERROR":
+            console.log("query dog error", action.err);
+            return state;
         default:
             return state;
     }
 }
 
-export default dogReducer
+
+
+export default (dogReducer)
