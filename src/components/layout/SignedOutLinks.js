@@ -7,8 +7,8 @@ const SignedOutLinks = () => {
             {/* <li><NavLink to='/'>About AAC</NavLink></li>
             <li><NavLink to='/'>Volunteer</NavLink></li> */}
             <li><NavLink to='/signin'>Log In</NavLink></li>
-            {/* <li><NavLink to='/signup'>Sign Up</NavLink></li>
-            <li><NavLink to='/'>See the Dogs!</NavLink></li> */}
+            <li><NavLink to='/signup'>Sign Up</NavLink></li>
+            {/* <li><NavLink to='/'>See the Dogs!</NavLink></li> */}
         </ul>
     )
 }

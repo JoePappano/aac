@@ -67,6 +67,7 @@ export const queryDogs = () => {
         firestore.collection("dogs").where("name", "==", "Fido").get().then((snapshot) => {
             snapshot.docs.forEach(dog => {
                 // console.log(dog.data())
+                dogs.push(dog)
                 dispatch({ type: "QUERY_DOG", dog})
             })
         })

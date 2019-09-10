@@ -214,7 +214,7 @@ class DogSummary extends Component {
 
         const {dog, deleteDog} = this.props;
         const trigger = <Button>See Dog Traits</Button>
-        const trigger2 = <Button> Delete </Button>
+        // const trigger2 = <Button> Delete </Button>
         
         // console.log(this.props)
 
@@ -248,18 +248,18 @@ class DogSummary extends Component {
 
                     <Modal header="Modal Header" trigger={trigger}>
                             <h3 className="grey-text text-darken-3 center"> {dog.name} </h3>
-                            <div className="input-field">
+                            {/* <div className="input-field">
                                 <label htmlFor="name"> Edit Dog Name </label>
                                 <input type="text" id="name"  />
-                            </div>
+                            </div> */}
                             <form>
                                 <div className="row">
                                     <p className="col s4"> Kennel Number: {dog.kennelNum} </p>
-                                    <div className="input-field col s4">
+                                    {/* <div className="input-field col s4">
                                         <label htmlFor="content"> Update Kennel Number </label>
                                         <textarea className="materialize-textarea" type="text" id="kennelNum"  />
                                     </div>
-                                    <button > Update Kennel Number </button>
+                                    <button > Update Kennel Number </button> */}
                                 </div>
                             </form>
                             <hr />

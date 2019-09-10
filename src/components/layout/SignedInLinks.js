@@ -7,7 +7,7 @@ const SignedInLinks = (props) => {
     
     return (
         <ul className="right">
-            <li><NavLink to='/create'>Upload a Picture</NavLink></li>
+            {/* <li><NavLink to='/create'>Upload a Picture</NavLink></li> */}
             <li><NavLink to='/createDog'>Upload a Dog</NavLink></li>
             <li><NavLink to='/manageDogs'>Manage Dogs</NavLink></li>
             <li><button onClick={props.signOut}>Log Out</button></li>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import { Redirect } from "react-router-dom"
 import { createDog } from "../../store/actions/dogActions"
 
 class CreateDog extends Component {
@@ -19,6 +20,9 @@ class CreateDog extends Component {
         this.props.history.push("/manageDogs")
     }
     render() {
+        const { auth } = this.props
+        if (!auth.uid) return <Redirect to="/signin"></Redirect>
+        console.log(this.props)
         return (
             <div className="container">
                 <form className="white" onSubmit={this.handleSubmit}>
@@ -45,6 +49,11 @@ class CreateDog extends Component {
 //         createProject: (project) => dispatch(createProject(project))
 //     }
 // }
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -52,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreateDog)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateDog)
