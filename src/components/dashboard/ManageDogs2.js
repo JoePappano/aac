@@ -6,7 +6,6 @@ import { compose } from 'redux'
 import { deleteDog } from "../../store/actions/dogActions"
 import { queryDogs } from "../../store/actions/dogActions"
 import { Redirect } from "react-router-dom"
-import DogSummary from "../dogs/DogSummary"
 import { Checkbox } from "react-materialize"
 import axios from "axios"
 import { functionDeclaration } from "@babel/types";
@@ -17,19 +16,18 @@ import { functionDeclaration } from "@babel/types";
 class ManageDogs extends Component {
 
     state = {
-        dogs: null
+        name: null,
+        kennelNum: null,
+        needsWalk: null,
+        needsPlaygroup: null
     }
 
-    componentDidMount = () => {
-        axios.get("/getDogs")
-            .then(res => {
-                console.log(res.data)
-                this.setState({
-                    dogs: res.data
-                })
-            })
-            .catch(err => console.log(err))
-    }
+    // componentDidMount = () => {
+    //     axios.get("/getDogs")
+    //         .then(res => {
+    //             console.log(res)
+    //         })
+    // }
 
     deleteDog = (id) => {
         // console.log(id)
@@ -63,11 +61,7 @@ class ManageDogs extends Component {
         // const { projects } = this.props
         // console.log(initDogs)
         // console.log(this.props)
-        let recentDogsMarkup = this.state.dogs ? (
-            this.state.dogs.map(dog => <DogSummary deleteDog={deleteDog} dog={dog} key={dog.id} />)
-        ) : (
-            <p> Loading... </p>
-        )
+        
         return(
             <div className="dashboard-container">
                 {/* <div className="row white">
@@ -105,11 +99,10 @@ class ManageDogs extends Component {
                     </div>
                 </div> */}
                 
-                {/* <div className=""> 
+                <div className=""> 
                     <DogList deleteDog={this.deleteDog} dogs={dogs}/>
-                   { nextDogs.length >= 1 ? <DogList deleteDog={this.deleteDog} dogs={nextDogs} /> : null }
-                </div> */}
-                { recentDogsMarkup }
+                   {/* { nextDogs.length >= 1 ? <DogList deleteDog={this.deleteDog} dogs={nextDogs} /> : null } */}
+                </div>
             </div>
         )
     }
@@ -150,7 +143,17 @@ const mapDispatchToProps = (dispatch) => {
 //     )
 //   )(ManageDogs)
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),)(ManageDogs)
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect(() => {
+        return [
+            {
+                collection: 'dogs',
+                // where: ['name', '==', 'Fido']
+            }
+            
+        ]
+    })
+)(ManageDogs)
 
 // [
 //     { 
