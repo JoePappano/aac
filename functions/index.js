@@ -1,28 +1,12 @@
-// const functions = require('firebase-functions');
-// const admin = require("firebase-admin");
+const functions = require('firebase-functions');
+const express = require('express');
+const app = express();
 
-// admin.initializeApp()
+const { getAllDogs, createOneDog, queryDogsByName} = require("./handlers/dogs")
 
-// const express = require('express');
-// const app = express();
+//Dog Routes
+app.get('/getDogs', getAllDogs)
+app.post("/createDog", createOneDog)
+app.post("/queryDogsByName", queryDogsByName)
 
-
-// app.get('/getDogs', (req, res) => {
-//     admin
-//     .firestore()
-//     .collection('dogs')
-//     .where("name", "==", "Fido")
-//     .get()
-//     .then((data) => {
-//             let dogs = [];
-//             data.forEach(doc => {
-//                 dogs.push(doc.data());
-//             });
-//             return res.json(dogs);
-//         })
-//         .catch((err) => console.error(err))
-// })
-
-// app.post('query')
-
-// exports.api = functions.https.onRequest(app);
+exports.api = functions.https.onRequest(app);
