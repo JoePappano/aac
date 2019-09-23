@@ -9,7 +9,7 @@ import { updateDog } from "../../store/actions/dogActions"
 // import { deleteDog } from "../../store/actions/dogActions"
 // import projectReducer from "../../store/reducers/projectReducer";
 
-class DogSummary extends Component {
+class DogSummary2 extends Component {
 
     state = {
         BR: this.props.dog.BR,
@@ -197,7 +197,7 @@ class DogSummary extends Component {
     }
     
     handleSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         // console.log(this.props)
         // console.log(this.state)
         this.props.updateDog(this.props.dog.id, this.state);
@@ -414,4 +414,4 @@ export default compose(
     firestoreConnect([
         { collection: "dogs" },
     ])
-)(DogSummary)
+)(DogSummary2)
