@@ -25,7 +25,24 @@ exports.createOneDog = (req, res) => {
     const newDog = {
         name: req.body.name,
         kennelNum: req.body.kennelNum,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        BR: false,
+        DR: false,
+        EA: false,
+        ER: false,
+        GS: false,
+        H: false,
+        HT: false,
+        J: false,
+        LB: false,
+        LLW: false,
+        LWO: false,
+        M: false,
+        RR: false,
+        SP: false,
+        TM: false,
+        walked: false,
+        playgroup: false,
     };
         db
         .collection("dogs")

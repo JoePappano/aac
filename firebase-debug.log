@@ -1,0 +1,66 @@
+[debug] [2019-09-22T21:15:30.764Z] ----------------------------------------------------------------------
+[debug] [2019-09-22T21:15:30.766Z] Command:       /usr/local/Cellar/node/11.11.0/bin/node /usr/local/bin/firebase serve
+[debug] [2019-09-22T21:15:30.766Z] CLI Version:   7.3.0
+[debug] [2019-09-22T21:15:30.766Z] Platform:      darwin
+[debug] [2019-09-22T21:15:30.766Z] Node Version:  v11.11.0
+[debug] [2019-09-22T21:15:30.767Z] Time:          Sun Sep 22 2019 16:15:30 GMT-0500 (Central Daylight Time)
+[debug] [2019-09-22T21:15:30.767Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-09-22T21:15:30.777Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-09-22T21:15:30.777Z] > authorizing via signed-in user
+[debug] [2019-09-22T21:15:30.778Z] [iam] checking project aacdog-4cf2a for permissions ["firebase.projects.get"]
+[debug] [2019-09-22T21:15:30.779Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-09-22T21:15:30.779Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-09-22T21:15:30.929Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-22T21:15:30.947Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/aacdog-4cf2a:testIamPermissions  
+
+[debug] [2019-09-22T21:15:31.115Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-22T21:15:31.117Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/aacdog-4cf2a  
+ 
+[debug] [2019-09-22T21:15:31.372Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/jepappano4/github/aac'...
+[info] 
+[debug] [2019-09-22T21:15:31.377Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/aacdog-4cf2a/webApps/-/config  
+ 
+[warn] ⚠  Your requested "node" version "8" doesn't match your global version "11"
+[info] ✔  functions: Emulator started at http://localhost:5001
+[debug] [2019-09-22T21:15:32.038Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "/Users/jepappano4/github/aac/functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: build
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2019-09-22T21:15:32.341Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/jepappano4/github/aac/functions","node_version":"11.11.0"}
+[debug] [2019-09-22T21:15:32.341Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-09-22T21:15:32.343Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.3.0","resolution":"/Users/jepappano4/github/aac/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2019-09-22T21:15:32.344Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/Users/jepappano4/github/aac/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2019-09-22T21:15:32.345Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/Users/jepappano4/github/aac/functions/node_modules/firebase-functions/lib/index.js"}
+[info] ✔  functions[api]: http function initialized (http://localhost:5001/aacdog-4cf2a/us-central1/api).
+[debug] [2019-09-23T01:52:35.062Z] File /Users/jepappano4/github/aac/functions/handlers/dogs.js changed, reloading triggers
+[debug] [2019-09-23T01:52:36.517Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/jepappano4/github/aac/functions","node_version":"11.11.0"}
+[debug] [2019-09-23T01:52:36.517Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-09-23T01:52:36.521Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.3.0","resolution":"/Users/jepappano4/github/aac/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2019-09-23T01:52:36.522Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/Users/jepappano4/github/aac/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2019-09-23T01:52:36.523Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/Users/jepappano4/github/aac/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  /Users/jepappano4/github/aac/functions/handlers/dogs.js:29
+        BR: false,
+        ^^
+
+SyntaxError: Unexpected identifier
+    at Module._compile (internal/modules/cjs/loader.js:743:23)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:810:10)
+    at Module.load (internal/modules/cjs/loader.js:666:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:606:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:598:3)
+    at Module.require (internal/modules/cjs/loader.js:705:19)
+    at require (internal/modules/cjs/helpers.js:14:16)
+    at Object.<anonymous> (/Users/jepappano4/github/aac/functions/index.js:5:54)
+    at Module._compile (internal/modules/cjs/loader.js:799:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:810:10)
+[warn] ⚠  We were unable to load your functions code. (see above)
+[debug] [2019-09-23T01:53:25.464Z] File /Users/jepappano4/github/aac/functions/handlers/dogs.js changed, reloading triggers
+[debug] [2019-09-23T01:53:26.739Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/jepappano4/github/aac/functions","node_version":"11.11.0"}
+[debug] [2019-09-23T01:53:26.740Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-09-23T01:53:26.742Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.3.0","resolution":"/Users/jepappano4/github/aac/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2019-09-23T01:53:26.743Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/Users/jepappano4/github/aac/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2019-09-23T01:53:26.744Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/Users/jepappano4/github/aac/functions/node_modules/firebase-functions/lib/index.js"}
