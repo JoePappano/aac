@@ -9,6 +9,7 @@ import CreateProject from "./components/projects/CreateProject"
 import CreateDog from "./components/dogs/CreateDog"
 import ManageDogs from "./components/dashboard/ManageDogs"
 import DogDetails from "./components/dogs/DogDetails"
+import QueryBox from "./components/dashboard/QueryBox"
 // import DogDetails2 from "./components/dogs/DogDetails2"
 
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/create" component={CreateProject} />
             <Route path="/createDog" component={CreateDog} />
             <Route path="/manageDogs" component={ManageDogs} />
+            <Route path="/queryDogs" component={QueryBox} />
           </Switch>
         </div>
       </BrowserRouter>

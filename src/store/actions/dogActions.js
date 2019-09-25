@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export const createDog = (dog) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         //make async call to database
@@ -60,11 +62,11 @@ export const updateDog = (id, data) => {
     }
 }
 
-export const queryDogs = () => {
+export const queryDogs = (queriedDog) => {
     return (dispatch, getState, { getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const dogs = [];
-        firestore.collection("dogs").where("name", "==", "Fido").get().then((snapshot) => {
+        firestore.collection("dogs").where("name", "==", queriedDog).get().then((snapshot) => {
             snapshot.docs.forEach(dog => {
                 // console.log(dog.data())
                 dogs.push(dog)
