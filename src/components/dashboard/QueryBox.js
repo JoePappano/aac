@@ -31,6 +31,7 @@ class QueryBox extends Component {
   };
 
   render() {
+    const { dog, auth, nextDogs } = this.props;
     return (
       <div>
         <div className="row">
@@ -46,7 +47,7 @@ class QueryBox extends Component {
             </div>
           </form>
         </div>
-        <ManageDogs />
+        <DogList  deleteDog={deleteDog} dog={dog} key={dog.id}/>
       </div>
     );
   }
@@ -55,19 +56,24 @@ class QueryBox extends Component {
 const mapStateToProps = state => {
     console.log(state.dog.dog)
     return {
-        queriedDog: state.dog.dog
+        queriedDog: state.dog.dog,
+        auth: state.firebase.auth
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        queryDogs: (queriedDog) => dispatch(queryDogs(queriedDog))
+        queryDogs: (queriedDog) => dispatch(queryDogs(queriedDog)),
+        deleteDog: id => dispatch(deleteDog(id))
     }
 }
 
 export default compose(
     connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )
-  )(QueryBox);
+        mapStateToProps,
+        mapDispatchToProps
+        ),
+    firestoreConnect([
+        { collection: "dogs" },
+    ])
+)(QueryBox)
