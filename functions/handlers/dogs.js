@@ -18,6 +18,121 @@ exports.getAllDogs = (req, res) => {
         .catch((err) => console.error(err))
 }
 
+exports.get100sDogs = (req, res) => {
+    db
+    .collection("dogs")
+    .where("kennelNum", ">", 100)
+    .where("kennelNum", "<", 200)
+    .orderBy("kennelNum", "desc")
+    .get()
+    .then((data) => {
+        let dogs = [];
+        data.forEach(doc => {
+            dogs.push({
+                ...doc.data(),
+                dogId: doc.id
+            });
+        });
+        return res.json(dogs);
+    })
+    .catch((err) => console.error(err))
+}
+exports.get200sDogs = (req, res) => {
+    db
+    .collection("dogs")
+    .where("kennelNum", ">", 200)
+    .where("kennelNum", "<", 300)
+    .orderBy("kennelNum", "desc")
+    .get()
+    .then((data) => {
+        let dogs = [];
+        data.forEach(doc => {
+            dogs.push({
+                ...doc.data(),
+                dogId: doc.id
+            });
+        });
+        return res.json(dogs);
+    })
+    .catch((err) => console.error(err))
+}
+exports.get300sDogs = (req, res) => {
+    db
+    .collection("dogs")
+    .where("kennelNum", ">", 300)
+    .where("kennelNum", "<", 400)
+    .orderBy("kennelNum", "desc")
+    .get()
+    .then((data) => {
+        let dogs = [];
+        data.forEach(doc => {
+            dogs.push({
+                ...doc.data(),
+                dogId: doc.id
+            });
+        });
+        return res.json(dogs);
+    })
+    .catch((err) => console.error(err))
+}
+exports.get400sDogs = (req, res) => {
+    db
+    .collection("dogs")
+    .where("kennelNum", ">", 400)
+    .where("kennelNum", "<", 500)
+    .orderBy("kennelNum", "desc")
+    .get()
+    .then((data) => {
+        let dogs = [];
+        data.forEach(doc => {
+            dogs.push({
+                ...doc.data(),
+                dogId: doc.id
+            });
+        });
+        return res.json(dogs);
+    })
+    .catch((err) => console.error(err))
+}
+exports.get500sDogs = (req, res) => {
+    db
+    .collection("dogs")
+    .where("kennelNum", ">", 500)
+    .where("kennelNum", "<", 600)
+    .orderBy("kennelNum", "desc")
+    .get()
+    .then((data) => {
+        let dogs = [];
+        data.forEach(doc => {
+            dogs.push({
+                ...doc.data(),
+                dogId: doc.id
+            });
+        });
+        return res.json(dogs);
+    })
+    .catch((err) => console.error(err))
+}
+exports.get600sDogs = (req, res) => {
+    db
+    .collection("dogs")
+    .where("kennelNum", ">", 600)
+    .where("kennelNum", "<", 700)
+    .orderBy("kennelNum", "desc")
+    .get()
+    .then((data) => {
+        let dogs = [];
+        data.forEach(doc => {
+            dogs.push({
+                ...doc.data(),
+                dogId: doc.id
+            });
+        });
+        return res.json(dogs);
+    })
+    .catch((err) => console.error(err))
+}
+
 exports.createOneDog = (req, res) => {
     if(req.method !== "POST"){
         return res.status(400).json({ message: "Method not allowed" })

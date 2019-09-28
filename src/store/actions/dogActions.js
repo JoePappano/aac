@@ -75,3 +75,10 @@ export const queryDogs = (queriedDog) => {
         })
     }
 }
+
+export const queryFunc = (queriedDog) => {
+    axios.post("/queryDogsByName", queriedDog)
+        .then(res => {
+            console.log(res.data)
+        })
+}

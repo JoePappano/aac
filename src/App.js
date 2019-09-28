@@ -10,6 +10,8 @@ import CreateDog from "./components/dogs/CreateDog"
 import ManageDogs from "./components/dashboard/ManageDogs"
 import DogDetails from "./components/dogs/DogDetails"
 import QueryBox from "./components/dashboard/QueryBox"
+// import ManageDogs2  from "./components/dashboard/ManageDogs2"
+import ManageDogs3 from "./components/dashboard/ManageDogs3"
 // import DogDetails2 from "./components/dogs/DogDetails2"
 
 
@@ -21,7 +23,7 @@ function App() {
         <div>
           <Navbar />
           <Switch>
-            <Route path="/" component={ManageDogs} exact/>
+            <Route path="/" component={ManageDogs3} exact/>
             <Route path="/project/:id" component={ProjectDetails} />
             <Route path="/dog/:id" component={DogDetails} />
             <Route path="/signin" component={SignIn} />

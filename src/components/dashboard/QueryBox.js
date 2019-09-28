@@ -5,12 +5,16 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { deleteDog } from "../../store/actions/dogActions";
 import { queryDogs } from "../../store/actions/dogActions";
+import { queryFunc } from "../../store/actions/dogActions";
+
 import { Redirect } from "react-router-dom";
 import DogSummary from "../dogs/DogSummary";
 import { Checkbox } from "react-materialize";
 import axios from "axios";
 import { functionDeclaration } from "@babel/types";
 import ManageDogs from "./ManageDogs";
+import ManageDogs3 from "./ManageDogs3";
+
 
 
 class QueryBox extends Component {
@@ -30,8 +34,13 @@ class QueryBox extends Component {
     // console.log("fdafdsafdsa", this.state)
   };
 
+  handleProps = e => {
+    e.preventDefault();
+    console.log(this.props)
+  }
+
   render() {
-    const { dog, auth, nextDogs } = this.props;
+    const { dogs, auth } = this.props;
     return (
       <div>
         <div className="row">
@@ -45,18 +54,21 @@ class QueryBox extends Component {
             <div>
                 <button type="submit"> Submit </button>
             </div>
+            <div>
+                <button type="submit" onClick={this.handleProps}> Check Props </button>
+            </div>
           </form>
         </div>
-        <DogList  deleteDog={deleteDog} dog={dog} key={dog.id}/>
+        <ManageDogs3 deleteDog={deleteDog} dog={dogs} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-    console.log(state.dog.dog)
+    console.log(state)
     return {
-        queriedDog: state.dog.dog,
+        dogs: state.dog.dogs,
         auth: state.firebase.auth
     }
 }
@@ -64,6 +76,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         queryDogs: (queriedDog) => dispatch(queryDogs(queriedDog)),
+        // queryFunc: (queriedDog) => dispatch(queryFunc(queriedDog)),
         deleteDog: id => dispatch(deleteDog(id))
     }
 }

@@ -32,8 +32,8 @@ const dogReducer = (state = initState, action) => {
             initState.dogs.push(action.dog.data())
             // console.log(state)
             return {
-                state,
-                dog: action.dog.data()
+                ...state,
+                // dog: action.dog.data()
             };
         case "QUERY_DOG_ERROR":
             console.log("query dog error", action.err);
